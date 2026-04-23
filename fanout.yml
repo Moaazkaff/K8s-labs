@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: multi-ingress
+  labels:
+    app.kubernetes.io/name: multi-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: moaaz-kaff.io
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: app1
+            port: 
+              number: 80
+      - path: "/app2"
+        pathType: Prefix
+        backend:
+          service:
+            name: service2
+            port: 
+              number: 8080
+      - path: "/app3"
+        pathType: Prefix
+        backend:
+          service:
+            name: service3
+            port: 
+              number: 8080
